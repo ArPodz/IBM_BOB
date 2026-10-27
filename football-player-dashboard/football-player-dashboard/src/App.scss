@@ -1,0 +1,136 @@
+/* ── Shell: make the app fill the viewport exactly ───────────────────────── */
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+/*
+ * Carbon's <Content> fills the remaining viewport height below the 48px header.
+ * overflow: hidden on the shell; each page handles its own scroll if needed.
+ */
+.app-content.cds--content {
+  height: calc(100vh - 48px);
+  max-width: 100%;
+  margin-top: 48px;
+  padding: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* ── Player Browser page ─────────────────────────────────────────────────── */
+
+.page-browser {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 2rem;
+  height: 100%;
+  padding: 1.75rem 2rem;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.page-browser__left {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 0 0 26rem;
+  min-width: 0;
+}
+
+.player-selector-wrapper {
+  width: 100%;
+}
+
+.page-browser__right {
+  flex: 1 1 0;
+  min-width: 0;
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* ── Team Formation page ─────────────────────────────────────────────────── */
+
+.page-formation {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1.25rem 2rem 1rem;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  /* Top bar: heading + button side-by-side */
+  &__topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-shrink: 0;
+  }
+
+  &__titles {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  &__heading {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--cds-text-primary, #161616);
+    letter-spacing: -0.01em;
+  }
+
+  &__subheading {
+    font-size: 0.875rem;
+    color: var(--cds-text-secondary, #525252);
+    margin: 0;
+  }
+
+  /* Main area: board left, detail right — fills remaining height */
+  &__layout {
+    display: flex;
+    align-items: stretch;
+    gap: 2rem;
+    flex: 1 1 0;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  &__board {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  /* Player detail panel — scrollable, matches pitch height */
+  &__detail-panel {
+    flex: 1 1 280px;
+    min-width: 260px;
+    max-width: 380px;
+    background: var(--cds-layer, #f4f4f4);
+    border: 1px solid var(--cds-border-subtle, #e0e0e0);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    overflow-y: auto;
+  }
+
+  &__detail-heading {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0;
+    flex-shrink: 0;
+    color: var(--cds-text-primary, #161616);
+    border-bottom: 2px solid var(--cds-border-subtle, #e0e0e0);
+    padding-bottom: 0.6rem;
+  }
+}
